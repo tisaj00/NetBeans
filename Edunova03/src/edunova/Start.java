@@ -5,11 +5,9 @@
  */
 package edunova;
 
-import edunova.controller.ObradaSmjer;
-import edunova.model.Smjer;
-import edunova.utility.Baza;
-import java.math.BigDecimal;
-import java.sql.SQLException;
+import edunova.view.Smjerovi;
+
+
 
 
 /**
@@ -23,12 +21,8 @@ public class Start {
      */
     public static void main(String[] args) {
         
-       
-            ObradaSmjer os = new ObradaSmjer();
-            
-           Smjer s = os.read().get(0);
-           s.setCijena(new BigDecimal(99999));
-           System.out.println(os.update(s));
+       new Smjerovi().setVisible(true);
+          
             
       
     }

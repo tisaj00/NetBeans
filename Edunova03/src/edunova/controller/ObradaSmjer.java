@@ -7,6 +7,7 @@ package edunova.controller;
 
 import edunova.model.Smjer;
 import edunova.utility.Baza;
+import edunova.utility.EdunovaException;
 import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -50,8 +51,12 @@ public class ObradaSmjer {
         return smjerovi;
     }
 
-    public Smjer create(Smjer s) {
+    public Smjer create(Smjer s) throws EdunovaException{
 
+        kontrola(s);
+        
+        
+        
         try {
             izraz = Baza.getInstance().getConnection().prepareStatement(
                     "insert into smjer (naziv,trajanje,cijena,upisnina,verificiran) "
@@ -93,7 +98,10 @@ public class ObradaSmjer {
 
     }
 
-    public boolean update(Smjer s) {
+    public boolean update(Smjer s) throws EdunovaException{
+        
+         kontrola(s);
+        
         try {
             izraz = Baza.getInstance().getConnection().prepareStatement(
                     "update smjer set naziv=?, trajanje=?, cijena=?, upisnina=?,verificiran=? "
@@ -110,6 +118,32 @@ public class ObradaSmjer {
         } catch (Exception e) {
             e.printStackTrace();
             return false;
+        }
+    }
+
+    private void kontrola(Smjer s) throws EdunovaException{
+       if(s.getNaziv()==null){
+            throw new EdunovaException("Naziv je null, obavezan unos");
+        }
+        
+        if(s.getNaziv().trim().length()==0){
+            throw new EdunovaException("Naziv je prazan, obavezan unos");
+        }
+        
+        if(s.getNaziv().length()>50){
+            throw new EdunovaException("Dužina naziva veća od dopuštene");
+        }
+        
+        if(s.getTrajanje()<0 || s.getTrajanje()>500){
+            throw new EdunovaException("Trajanje nije u dobrom rasponu (0 - 500)");
+        }
+        
+        if(s.getCijena().compareTo(BigDecimal.ZERO)<0){
+            throw  new EdunovaException("Cijena mora biti pozitivan broj");
+        }
+        
+        if(s.getUpisnina().compareTo(BigDecimal.ZERO)<0){
+            throw  new EdunovaException("Upisnina mora biti pozitivan broj");
         }
     }
 }
