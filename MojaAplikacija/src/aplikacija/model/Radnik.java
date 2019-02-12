@@ -15,12 +15,12 @@ import java.util.Date;
 public class Radnik {
     
     private int id;
-    private char oib;
+    private BigDecimal oib;
     private String ime;
     private String prezime;
-    private char spol;
+    private String spol;
     private Date datum_rodenja;
-    private int mobitel;
+    private BigDecimal mobitel;
     private BigDecimal osnovica_po_satu;
     private String opcina_prebivalista;
 
@@ -32,11 +32,11 @@ public class Radnik {
         this.id = id;
     }
 
-    public char getOib() {
+    public BigDecimal getOib() {
         return oib;
     }
 
-    public void setOib(char oib) {
+    public void setOib(BigDecimal oib) {
         this.oib = oib;
     }
 
@@ -56,13 +56,15 @@ public class Radnik {
         this.prezime = prezime;
     }
 
-    public char getSpol() {
+    public String getSpol() {
         return spol;
     }
 
-    public void setSpol(char spol) {
+    public void setSpol(String spol) {
         this.spol = spol;
     }
+
+    
 
     public Date getDatum_rodenja() {
         return datum_rodenja;
@@ -72,11 +74,11 @@ public class Radnik {
         this.datum_rodenja = datum_rodenja;
     }
 
-    public int getMobitel() {
+    public BigDecimal getMobitel() {
         return mobitel;
     }
 
-    public void setMobitel(int mobitel) {
+    public void setMobitel(BigDecimal mobitel) {
         this.mobitel = mobitel;
     }
 

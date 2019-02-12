@@ -5,6 +5,8 @@
  */
 package aplikacija;
 
+import aplikacija.view.Radnici;
+
 /**
  *
  * @author Josip
@@ -15,7 +17,8 @@ public class Start {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-    }
+        new Radnici().setVisible(true);
+                 
+   }
     
 }

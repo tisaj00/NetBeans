@@ -10,7 +10,8 @@ package aplikacija.utility;
  * @author Josip
  */
 public class AplikacijaException extends Exception{
-        private String poruka;
+    
+    private String poruka;
     
     public AplikacijaException(String poruka){
         this.poruka=poruka;

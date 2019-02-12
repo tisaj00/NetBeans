@@ -5,17 +5,27 @@
  */
 package aplikacija.view;
 
+import aplikacija.controller.ObradaRadnik;
+import aplikacija.model.Radnik;
+import java.text.DecimalFormat;
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author Josip
  */
 public class Radnici extends javax.swing.JFrame {
 
+    private ObradaRadnik obradaRadnik;
+    private DecimalFormat format;
     /**
-     * Creates new form Radnici
+     * Creates new form Radnik
      */
     public Radnici() {
         initComponents();
+        obradaRadnik = new ObradaRadnik();
+        
+        ucitajRadnike();
     }
 
     /**
@@ -27,26 +37,49 @@ public class Radnici extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        lstRadnik = new javax.swing.JList<>();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Moja aplikacija");
+        setTitle("Moja Aplikacija");
+        setAutoRequestFocus(false);
+
+        jScrollPane1.setViewportView(lstRadnik);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 764, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(205, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
- 
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList<Radnik> lstRadnik;
     // End of variables declaration//GEN-END:variables
+
+    private void ucitajRadnike() {
+        DefaultListModel<Radnik> r = new DefaultListModel<>();
+        for(Radnik m : obradaRadnik.read()){
+            r.addElement(m);
+        }
+        lstRadnik.setModel(r);
+    }
+    
 }

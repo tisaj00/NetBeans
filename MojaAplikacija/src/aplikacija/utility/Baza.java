@@ -16,7 +16,7 @@ import java.sql.SQLException;
 public class Baza {
     private static Baza instance;
     private Connection connection;
-    private String url = "jdbc:mysql://localhost/edunovaj19?serverTimezone=UTC&"
+    private String url = "jdbc:mysql://localhost/aplikacija?serverTimezone=UTC&"
             + "useUnicode=true&characterEncoding=utf-8";
     private String username = "edunova";
     private String password = "edunova";
