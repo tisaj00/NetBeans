@@ -5,6 +5,7 @@
  */
 package aplikacija.model;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -20,7 +21,7 @@ public class Radnik {
     private char spol;
     private Date datum_rodenja;
     private int mobitel;
-    private float osnovica_po_satu;
+    private BigDecimal osnovica_po_satu;
     private String opcina_prebivalista;
 
     public int getId() {
@@ -79,11 +80,11 @@ public class Radnik {
         this.mobitel = mobitel;
     }
 
-    public float getOsnovica_po_satu() {
+    public BigDecimal getOsnovica_po_satu() {
         return osnovica_po_satu;
     }
 
-    public void setOsnovica_po_satu(float osnovica_po_satu) {
+    public void setOsnovica_po_satu(BigDecimal osnovica_po_satu) {
         this.osnovica_po_satu = osnovica_po_satu;
     }
 
