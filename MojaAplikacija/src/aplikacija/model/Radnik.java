@@ -100,7 +100,7 @@ public class Radnik {
 
     @Override
     public String toString() {
-        return "Radnik{" + "id=" + id + ", oib=" + oib + ", ime=" + ime + ", prezime=" + prezime + ", spol=" + spol + ", datum_rodenja=" + datum_rodenja + ", mobitel=" + mobitel + ", osnovica_po_satu=" + osnovica_po_satu + ", opcina_prebivalista=" + opcina_prebivalista + '}';
+        return id + "   " + ime + "   " + prezime + "   " + spol + "   " + datum_rodenja ;
     }
     
     
