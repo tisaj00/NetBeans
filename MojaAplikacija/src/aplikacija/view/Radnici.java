@@ -258,6 +258,7 @@ public class Radnici extends javax.swing.JFrame {
         txtOib.setText(format.format(r.getOib()));
         txtMobitel.setText(format.format(r.getMobitel()));
         txtSpol.setText(r.getSpol());
+        txtDatum.setText(format.format.(r.getDatum_rodenja()));
         txtOsnovica.setText(format.format(r.getOsnovica_po_satu()));
         txtOpcina.setText(r.getOpcina_prebivalista());
     
@@ -369,6 +370,7 @@ public class Radnici extends javax.swing.JFrame {
        txtOib.setText("");
        txtOsnovica.setText("");
        txtOpcina.setText("");
+       txtDatum.setText("");
        
     }
     

@@ -60,16 +60,16 @@ public class ObradaRadnik {
         kontrola(r);
         try {
             
-            izraz = Baza.getInstance().getConnection().prepareStatement("insert into radnik (oib,ime,prezime,spol,mobitel,osnovica_po_satu,opcina_prebivalista) "
+            izraz = Baza.getInstance().getConnection().prepareStatement("insert into radnik (oib,ime,prezime,spol,datum_rodenja,mobitel,osnovica_po_satu,opcina_prebivalista) "
                     + "values (?,?,?,?,?,?,?,?,)", Statement.RETURN_GENERATED_KEYS);
             izraz.setBigDecimal(1, r.getOib());
             izraz.setString(2, r.getIme());
             izraz.setString(3, r.getPrezime());
-            
-           
-            izraz.setBigDecimal(4, r.getMobitel());
-            izraz.setBigDecimal(5, r.getOsnovica_po_satu());
-            izraz.setString(6, r.getOpcina_prebivalista());
+            izraz.setString(4, r.getSpol());
+            izraz.setDate(5, r.getDatum_rodenja());
+            izraz.setBigDecimal(6, r.getMobitel());
+            izraz.setBigDecimal(7, r.getOsnovica_po_satu());
+            izraz.setString(8, r.getOpcina_prebivalista());
             
             izraz.executeUpdate();
             rs = izraz.getGeneratedKeys();
@@ -107,16 +107,16 @@ public class ObradaRadnik {
         
         try {
             izraz = Baza.getInstance().getConnection().prepareStatement(
-                    "update radnik set oib=?, ime=?, prezime=?, spol=?,mobitel=?,osnovica_po_satu=?,opcina_prebivalista=? "
+                    "update radnik set oib=?, ime=?, prezime=?, spol=?,datum_rodenja=?,mobitel=?,osnovica_po_satu=?,opcina_prebivalista=? "
                     + " where id=?");
             izraz.setBigDecimal(1, r.getOib());
             izraz.setString(2, r.getIme());
             izraz.setString(3, r.getPrezime());
-            
-            
-            izraz.setBigDecimal(4, r.getMobitel());
-            izraz.setBigDecimal(5, r.getOsnovica_po_satu());
-            izraz.setString(6, r.getOpcina_prebivalista());
+            izraz.setString(4, r.getSpol());
+            izraz.setDate(5, r.getDatum_rodenja());
+            izraz.setBigDecimal(6, r.getMobitel());
+            izraz.setBigDecimal(7, r.getOsnovica_po_satu());
+            izraz.setString(8, r.getOpcina_prebivalista());
 
             return izraz.executeUpdate() > 0;
 
