@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package aplikacija.model;
+package tisaj.ObracunPlace.model;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -15,14 +15,14 @@ import java.util.Date;
 public class Radnik {
     
     private int id;
-    private BigDecimal oib;
+    private String oib;
     private String ime;
     private String prezime;
     private String spol;
-    private Date datum_rodenja;
-    private BigDecimal mobitel;
-    private BigDecimal osnovica_po_satu;
-    private String opcina_prebivalista;
+    private Date datumRodenja;
+    private String mobitel;
+    private BigDecimal osnovicaPoSatu;
+    private String opcinaPrebivalista;
 
     public int getId() {
         return id;
@@ -32,13 +32,23 @@ public class Radnik {
         this.id = id;
     }
 
-    public BigDecimal getOib() {
+    public String getOib() {
         return oib;
     }
 
-    public void setOib(BigDecimal oib) {
+    public void setOib(String oib) {
         this.oib = oib;
     }
+
+    public String getMobitel() {
+        return mobitel;
+    }
+
+    public void setMobitel(String mobitel) {
+        this.mobitel = mobitel;
+    }
+
+   
 
     public String getIme() {
         return ime;
@@ -66,41 +76,35 @@ public class Radnik {
 
     
 
-    public Date getDatum_rodenja() {
-        return datum_rodenja;
+    public Date getDatumRodenja() {
+        return datumRodenja;
     }
 
-    public void setDatum_rodenja(Date datum_rodenja) {
-        this.datum_rodenja = datum_rodenja;
+    public void setDatumRodenja(Date datum_rodenja) {
+        this.datumRodenja = datum_rodenja;
     }
 
-    public BigDecimal getMobitel() {
-        return mobitel;
+   
+
+    public BigDecimal getOsnovicaPoSatu() {
+        return osnovicaPoSatu;
     }
 
-    public void setMobitel(BigDecimal mobitel) {
-        this.mobitel = mobitel;
+    public void setOsnovicaPoSatu(BigDecimal osnovica_po_satu) {
+        this.osnovicaPoSatu = osnovica_po_satu;
     }
 
-    public BigDecimal getOsnovica_po_satu() {
-        return osnovica_po_satu;
+    public String getOpcinaPrebivalista() {
+        return opcinaPrebivalista;
     }
 
-    public void setOsnovica_po_satu(BigDecimal osnovica_po_satu) {
-        this.osnovica_po_satu = osnovica_po_satu;
-    }
-
-    public String getOpcina_prebivalista() {
-        return opcina_prebivalista;
-    }
-
-    public void setOpcina_prebivalista(String opcina_prebivalista) {
-        this.opcina_prebivalista = opcina_prebivalista;
+    public void setOpcinaPrebivalista(String opcina_prebivalista) {
+        this.opcinaPrebivalista = opcina_prebivalista;
     }
 
     @Override
     public String toString() {
-        return id + "   " + ime + "   " + prezime + "   " + spol + "   " + datum_rodenja ;
+        return id + "   " + ime + "   " + prezime + "   " + spol + "   " + datumRodenja ;
     }
     
     

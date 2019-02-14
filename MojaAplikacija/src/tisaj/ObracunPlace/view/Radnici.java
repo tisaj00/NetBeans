@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package aplikacija.view;
+package tisaj.ObracunPlace.view;
 
-import aplikacija.controller.ObradaRadnik;
-import aplikacija.model.Radnik;
-import aplikacija.utility.AplikacijaException;
+import tisaj.ObracunPlace.controller.ObradaRadnik;
+import tisaj.ObracunPlace.model.Radnik;
+import tisaj.ObracunPlace.utility.AplikacijaException;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
@@ -253,14 +254,30 @@ public class Radnici extends javax.swing.JFrame {
             return;
         }
         
+        SimpleDateFormat dt = new SimpleDateFormat("dd. MM. YYYY.");
+       
         txtIme.setText(r.getIme());
         txtPrezime.setText(r.getPrezime());
-        txtOib.setText(format.format(r.getOib()));
-        txtMobitel.setText(format.format(r.getMobitel()));
+        
+        try {
+            txtOib.setText((r.getOib()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        txtMobitel.setText((r.getMobitel()));
         txtSpol.setText(r.getSpol());
-        txtDatum.setText(format.format.(r.getDatum_rodenja()));
-        txtOsnovica.setText(format.format(r.getOsnovica_po_satu()));
-        txtOpcina.setText(r.getOpcina_prebivalista());
+        try {
+            txtDatum.setText(dt.format(r.getDatumRodenja()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            txtOsnovica.setText(format.format(r.getOsnovicaPoSatu()));
+        } catch (Exception e) {
+        }
+        
+        txtOpcina.setText(r.getOpcinaPrebivalista());
     
         
     }//GEN-LAST:event_lstRadnikValueChanged
@@ -382,10 +399,7 @@ public class Radnici extends javax.swing.JFrame {
         
         
         try {
-            r.setMobitel(
-                    new BigDecimal(
-                            format.parse(txtMobitel.getText()).floatValue()
-                    )
+            r.setMobitel(txtMobitel.getText()
             );
         } catch (Exception e) {
             e.printStackTrace();
@@ -394,11 +408,8 @@ public class Radnici extends javax.swing.JFrame {
         }
         
          try {
-            r.setOib(
-                    new BigDecimal(
-                            format.parse(txtOib.getText()).floatValue()
-                    )
-            );
+            r.setOib((txtOib.getText()));
+            
         } catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showConfirmDialog(null, "Oib nije broj");

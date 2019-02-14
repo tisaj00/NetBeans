@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package aplikacija.controller;
+package tisaj.ObracunPlace.controller;
 
-import aplikacija.model.Radnik;
-import aplikacija.utility.AplikacijaException;
-import aplikacija.utility.Baza;
+import tisaj.ObracunPlace.model.Radnik;
+import tisaj.ObracunPlace.utility.AplikacijaException;
+import tisaj.ObracunPlace.utility.Baza;
 import java.math.BigDecimal;
 import java.util.List;
 import java.sql.PreparedStatement;
@@ -21,11 +21,11 @@ import java.util.ArrayList;
  * @author Josip
  */
 public class ObradaRadnik {
-    
+
     private PreparedStatement izraz;
     private ResultSet rs;
-    
-    public List<Radnik> read(){
+
+    public List<Radnik> read() {
         java.util.List<Radnik> Radnici = new ArrayList<>();
         try {
             izraz = Baza.getInstance().getConnection().prepareStatement("select * from radnik");
@@ -37,11 +37,21 @@ public class ObradaRadnik {
                 r.setIme(rs.getString("ime"));
                 r.setPrezime(rs.getString("prezime"));
                 r.setSpol(rs.getString("spol"));
-                r.setOib(rs.getBigDecimal("oib"));
-                r.setMobitel(rs.getBigDecimal("mobitel"));
-                r.setDatum_rodenja(rs.getDate("datum_rodenja"));
-                r.setOsnovica_po_satu(rs.getBigDecimal("osnovica_po_satu"));
-                r.setOpcina_prebivalista(rs.getString("opcina_prebivalista"));          
+                r.setOib(rs.getString("oib"));
+                r.setMobitel(rs.getString("mobitel"));
+                
+                try {
+                    r.setDatumRodenja(rs.getDate("datum_rodenja"));
+                } catch (java.sql.SQLException e) {
+                    r.setDatumRodenja(null);
+                }
+                try {
+                    r.setOsnovicaPoSatu(rs.getBigDecimal("osnovica_po_satu"));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                
+                r.setOpcinaPrebivalista(rs.getString("opcina_prebivalista"));
                 Radnici.add(r);
             }
             rs.close();
@@ -52,39 +62,39 @@ public class ObradaRadnik {
             e.printStackTrace();
         }
         return Radnici;
-       
+
     }
-    
-    public Radnik create(Radnik r) throws AplikacijaException{
-        
+
+    public Radnik create(Radnik r) throws AplikacijaException {
+
         kontrola(r);
         try {
-            
+
             izraz = Baza.getInstance().getConnection().prepareStatement("insert into radnik (oib,ime,prezime,spol,datum_rodenja,mobitel,osnovica_po_satu,opcina_prebivalista) "
                     + "values (?,?,?,?,?,?,?,?,)", Statement.RETURN_GENERATED_KEYS);
-            izraz.setBigDecimal(1, r.getOib());
+            izraz.setString(1, r.getOib());
             izraz.setString(2, r.getIme());
             izraz.setString(3, r.getPrezime());
             izraz.setString(4, r.getSpol());
-            izraz.setDate(5, r.getDatum_rodenja());
-            izraz.setBigDecimal(6, r.getMobitel());
-            izraz.setBigDecimal(7, r.getOsnovica_po_satu());
-            izraz.setString(8, r.getOpcina_prebivalista());
-            
+            izraz.setDate(5, new java.sql.Date(r.getDatumRodenja().getTime()));
+            izraz.setString(6, r.getMobitel());
+            izraz.setBigDecimal(7, r.getOsnovicaPoSatu());
+            izraz.setString(8, r.getOpcinaPrebivalista());
+
             izraz.executeUpdate();
             rs = izraz.getGeneratedKeys();
             rs.next();
             r.setId(rs.getInt(1));
-            
+
             rs.close();
             izraz.close();
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         }
         return r;
     }
-    
+
     public boolean delete(Radnik r) {
 
         try {
@@ -100,23 +110,23 @@ public class ObradaRadnik {
         }
 
     }
-    
-    public boolean update(Radnik r) throws AplikacijaException{
-        
-         kontrola(r);
-        
+
+    public boolean update(Radnik r) throws AplikacijaException {
+
+        kontrola(r);
+
         try {
             izraz = Baza.getInstance().getConnection().prepareStatement(
                     "update radnik set oib=?, ime=?, prezime=?, spol=?,datum_rodenja=?,mobitel=?,osnovica_po_satu=?,opcina_prebivalista=? "
                     + " where id=?");
-            izraz.setBigDecimal(1, r.getOib());
+            izraz.setString(1, r.getOib());
             izraz.setString(2, r.getIme());
             izraz.setString(3, r.getPrezime());
             izraz.setString(4, r.getSpol());
-            izraz.setDate(5, r.getDatum_rodenja());
-            izraz.setBigDecimal(6, r.getMobitel());
-            izraz.setBigDecimal(7, r.getOsnovica_po_satu());
-            izraz.setString(8, r.getOpcina_prebivalista());
+            izraz.setDate(5, new java.sql.Date(r.getDatumRodenja().getTime()));
+            izraz.setString(6, r.getMobitel());
+            izraz.setBigDecimal(7, r.getOsnovicaPoSatu());
+            izraz.setString(8, r.getOpcinaPrebivalista());
 
             return izraz.executeUpdate() > 0;
 
@@ -125,37 +135,30 @@ public class ObradaRadnik {
             return false;
         }
     }
-    
-    
-    
-    
-    
-    
-    private void kontrola(Radnik r) throws AplikacijaException{
-       if(r.getOib()==null){
+
+    private void kontrola(Radnik r) throws AplikacijaException {
+        if (r.getOib() == null) {
             throw new AplikacijaException("Naziv je null, obavezan unos");
         }
-        
-        if(r.getIme().trim().length()==0){
+
+        if (r.getIme().trim().length() == 0) {
             throw new AplikacijaException("Naziv je prazan, obavezan unos");
         }
-        
-        if(r.getPrezime().trim().length()==0){
+
+        if (r.getPrezime().trim().length() == 0) {
             throw new AplikacijaException("Naziv je prazan, obavezan unos");
         }
-        
-        if(r.getSpol().length()>5){
+
+        if (r.getSpol().length() > 5) {
             throw new AplikacijaException("Dužina spola veća od dopuštene");
         }
-        
-       
-        
-        if(r.getOsnovica_po_satu().compareTo(BigDecimal.ZERO)<0){
-            throw  new AplikacijaException("Osnovica po satu mora biti pozitivan broj");
+
+        if (r.getOsnovicaPoSatu().compareTo(BigDecimal.ZERO) < 0) {
+            throw new AplikacijaException("Osnovica po satu mora biti pozitivan broj");
         }
-        
-        if(r.getOpcina_prebivalista().trim().length()==0){
-            throw  new AplikacijaException("UOpćina prebivašita prazna,obavezan unos");
+
+        if (r.getOpcinaPrebivalista().trim().length() == 0) {
+            throw new AplikacijaException("UOpćina prebivašita prazna,obavezan unos");
         }
     }
 }

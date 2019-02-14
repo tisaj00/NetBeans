@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package aplikacija.model;
+package tisaj.ObracunPlace.model;
 
 import java.math.BigDecimal;
 

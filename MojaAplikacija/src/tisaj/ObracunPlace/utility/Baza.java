@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package aplikacija.utility;
+package tisaj.ObracunPlace.utility;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -16,7 +16,7 @@ import java.sql.SQLException;
 public class Baza {
     private static Baza instance;
     private Connection connection;
-    private String url = "jdbc:mysql://localhost/aplikacija?serverTimezone=UTC&"
+    private String url = "jdbc:mysql://localhost/obracunplace?serverTimezone=UTC&"
             + "useUnicode=true&characterEncoding=utf-8";
     private String username = "edunova";
     private String password = "edunova";
