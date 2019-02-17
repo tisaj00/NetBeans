@@ -46,7 +46,7 @@ public class ObradaRadnik {
                     r.setDatumRodenja(null);
                 }
                 try {
-                    r.setOsnovicaPoSatu(rs.getBigDecimal("osnovica_po_satu"));
+                    r.setOsnovicaPoSatu(rs.getString("osnovica_po_satu"));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -78,7 +78,7 @@ public class ObradaRadnik {
             izraz.setString(4, r.getSpol());
             izraz.setDate(5, new java.sql.Date(r.getDatumRodenja().getTime()));
             izraz.setString(6, r.getMobitel());
-            izraz.setBigDecimal(7, r.getOsnovicaPoSatu());
+            izraz.setString(7, r.getOsnovicaPoSatu());
             izraz.setString(8, r.getOpcinaPrebivalista());
 
             izraz.executeUpdate();
@@ -99,7 +99,7 @@ public class ObradaRadnik {
 
         try {
 
-            izraz = Baza.getInstance().getConnection().prepareStatement("delete from smjer where id=?");
+            izraz = Baza.getInstance().getConnection().prepareStatement("delete from radnik where id=?");
             izraz.setInt(1, r.getId());
 
             return izraz.executeUpdate() > 0;
@@ -125,7 +125,7 @@ public class ObradaRadnik {
             izraz.setString(4, r.getSpol());
             izraz.setDate(5, new java.sql.Date(r.getDatumRodenja().getTime()));
             izraz.setString(6, r.getMobitel());
-            izraz.setBigDecimal(7, r.getOsnovicaPoSatu());
+            izraz.setString(7, r.getOsnovicaPoSatu());
             izraz.setString(8, r.getOpcinaPrebivalista());
 
             return izraz.executeUpdate() > 0;
@@ -153,9 +153,7 @@ public class ObradaRadnik {
             throw new AplikacijaException("Dužina spola veća od dopuštene");
         }
 
-        if (r.getOsnovicaPoSatu().compareTo(BigDecimal.ZERO) < 0) {
-            throw new AplikacijaException("Osnovica po satu mora biti pozitivan broj");
-        }
+        
 
         if (r.getOpcinaPrebivalista().trim().length() == 0) {
             throw new AplikacijaException("UOpćina prebivašita prazna,obavezan unos");

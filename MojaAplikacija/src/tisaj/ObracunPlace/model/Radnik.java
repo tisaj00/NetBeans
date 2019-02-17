@@ -21,7 +21,7 @@ public class Radnik {
     private String spol;
     private Date datumRodenja;
     private String mobitel;
-    private BigDecimal osnovicaPoSatu;
+    private String osnovicaPoSatu;
     private String opcinaPrebivalista;
 
     public int getId() {
@@ -84,15 +84,17 @@ public class Radnik {
         this.datumRodenja = datum_rodenja;
     }
 
-   
-
-    public BigDecimal getOsnovicaPoSatu() {
+    public String getOsnovicaPoSatu() {
         return osnovicaPoSatu;
     }
 
-    public void setOsnovicaPoSatu(BigDecimal osnovica_po_satu) {
-        this.osnovicaPoSatu = osnovica_po_satu;
+    public void setOsnovicaPoSatu(String osnovicaPoSatu) {
+        this.osnovicaPoSatu = osnovicaPoSatu;
     }
+
+   
+
+   
 
     public String getOpcinaPrebivalista() {
         return opcinaPrebivalista;
