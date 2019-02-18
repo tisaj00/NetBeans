@@ -92,9 +92,6 @@ public class Radnik {
         this.osnovicaPoSatu = osnovicaPoSatu;
     }
 
-   
-
-   
 
     public String getOpcinaPrebivalista() {
         return opcinaPrebivalista;

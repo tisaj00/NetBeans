@@ -241,7 +241,7 @@ public class Radnici extends javax.swing.JFrame {
             return;
         }
         
-        SimpleDateFormat dt = new SimpleDateFormat("dd. MM. YYYY.");
+        SimpleDateFormat dt = new SimpleDateFormat("dd.MM.YYYY.");
        
         txtIme.setText(r.getIme());
         txtPrezime.setText(r.getPrezime());
@@ -274,13 +274,13 @@ public class Radnici extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIzlazActionPerformed
 
     private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed
-        Radnik r = new Radnik();
+       Radnik r = new Radnik();
       
        if(!kontrola(r)){
            return;
        }
-        
-        try {
+       
+       try {
             obradaRadnik.create(r);
         } catch (AplikacijaException e){
             JOptionPane.showConfirmDialog(null, e.getPoruka());
@@ -288,7 +288,6 @@ public class Radnici extends javax.swing.JFrame {
         }
         
         ucitajRadnike();
-        
         ocistiPolja();
     }//GEN-LAST:event_btnDodajActionPerformed
 
@@ -296,13 +295,13 @@ public class Radnici extends javax.swing.JFrame {
         Radnik r = lstRadnik.getSelectedValue();
         
         if(r==null){
-            JOptionPane.showConfirmDialog(null, "Prvo odaberite radnika");
+            return;
         }
         
         
-         if(!kontrola(r)){
+        if(!kontrola(r)){
            return;
-       }
+        }
         
         try {
             obradaRadnik.update(r);
@@ -382,25 +381,28 @@ public class Radnici extends javax.swing.JFrame {
          r.setIme(txtIme.getText());
          r.setPrezime(txtPrezime.getText());
          r.setSpol(txtSpol.getText());
-        
-        
+                
         try {
-            r.setMobitel(txtMobitel.getText()
-            );
+            r.setMobitel(txtMobitel.getText());
         } catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showConfirmDialog(null, "Mobitel nije broj");
             return false;
         }
         
-         try {
+        try {
             r.setOib((txtOib.getText()));
-            
         } catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showConfirmDialog(null, "Oib nije broj");
             return false;
         }
+         try {
+            r.setOib(txtOib.getText());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        };
         
  
         return true;
