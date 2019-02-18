@@ -12,6 +12,7 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import tisaj.ObracunPlace.About;
 
 /**
  *
@@ -21,6 +22,7 @@ public class Radnici extends javax.swing.JFrame {
 
     private ObradaRadnik obradaRadnik;
     private DecimalFormat format;
+    private SimpleDateFormat datum;
     /**
      * Creates new form Radnik
      */
@@ -61,7 +63,11 @@ public class Radnici extends javax.swing.JFrame {
         btnDodaj = new javax.swing.JButton();
         btnPromjeni = new javax.swing.JButton();
         btnObrisi = new javax.swing.JButton();
-        btnIzlaz = new javax.swing.JButton();
+        btnOčisti = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Moja Aplikacija");
@@ -117,12 +123,34 @@ public class Radnici extends javax.swing.JFrame {
             }
         });
 
-        btnIzlaz.setText("Izlaz");
-        btnIzlaz.addActionListener(new java.awt.event.ActionListener() {
+        btnOčisti.setText("Očisti");
+        btnOčisti.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIzlazActionPerformed(evt);
+                btnOčistiActionPerformed(evt);
             }
         });
+
+        jMenu1.setText("File");
+
+        jMenuItem1.setText("About");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuItem2.setText("Izlaz");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -139,17 +167,16 @@ public class Radnici extends javax.swing.JFrame {
                         .addComponent(jLabel5))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnIzlaz)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtOpcina, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel8)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(btnDodaj)
-                                    .addGap(37, 37, 37)
-                                    .addComponent(btnPromjeni)
-                                    .addGap(44, 44, 44)
-                                    .addComponent(btnObrisi)))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtOpcina, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnDodaj)
+                                .addGap(37, 37, 37)
+                                .addComponent(btnPromjeni)
+                                .addGap(44, 44, 44)
+                                .addComponent(btnObrisi))
+                            .addComponent(btnOčisti, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,7 +216,10 @@ public class Radnici extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
@@ -226,9 +256,8 @@ public class Radnici extends javax.swing.JFrame {
                             .addComponent(btnPromjeni)
                             .addComponent(btnObrisi))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnIzlaz))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btnOčisti)
+                        .addGap(19, 19, 19))))
         );
 
         pack();
@@ -273,10 +302,6 @@ public class Radnici extends javax.swing.JFrame {
     
         
     }//GEN-LAST:event_lstRadnikValueChanged
-
-    private void btnIzlazActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIzlazActionPerformed
-           dispose();
-    }//GEN-LAST:event_btnIzlazActionPerformed
 
     private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed
        Radnik r = new Radnik();
@@ -334,12 +359,24 @@ public class Radnici extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnObrisiActionPerformed
 
+    private void btnOčistiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOčistiActionPerformed
+        ocistiPolja();
+    }//GEN-LAST:event_btnOčistiActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        dispose();
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        new About().setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDodaj;
-    private javax.swing.JButton btnIzlaz;
     private javax.swing.JButton btnObrisi;
+    private javax.swing.JButton btnOčisti;
     private javax.swing.JButton btnPromjeni;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -349,6 +386,10 @@ public class Radnici extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<Radnik> lstRadnik;
     private javax.swing.JTextField txtDatum;
@@ -402,13 +443,18 @@ public class Radnici extends javax.swing.JFrame {
             JOptionPane.showConfirmDialog(null, "Oib nije broj");
             return false;
         }
-         try {
-            r.setOib(txtOib.getText());
+        SimpleDateFormat formatt = new SimpleDateFormat("dd.MM.YYYY.");
+     
+        try {
+            r.setDatumRodenja(formatt.parse(txtDatum.getText()));
         } catch (Exception e) {
             e.printStackTrace();
+            JOptionPane.showConfirmDialog(null, "Datum nije broj");
             return false;
-        };
+        }
         
+        r.setOsnovicaPoSatu(txtOsnovica.getText());
+        r.setOpcinaPrebivalista(txtOpcina.getText());
  
         return true;
     }
