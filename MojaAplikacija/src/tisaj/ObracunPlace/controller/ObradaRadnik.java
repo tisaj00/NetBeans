@@ -76,6 +76,7 @@ public class ObradaRadnik {
             izraz.setString(2, r.getIme());
             izraz.setString(3, r.getPrezime());
             izraz.setString(4, r.getSpol());
+            
             try {
                 izraz.setDate(5, new java.sql.Date(r.getDatumRodenja().getTime()));
             } catch (Exception e) {

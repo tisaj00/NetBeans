@@ -88,7 +88,11 @@ public class Radnici extends javax.swing.JFrame {
 
         jLabel6.setText("Datum rođenja");
 
+        txtDatum.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
         jLabel7.setText("Osnovica po satu");
+
+        txtOsnovica.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         jLabel8.setText("Općina prebivališta");
 
@@ -242,23 +246,24 @@ public class Radnici extends javax.swing.JFrame {
         }
         
         SimpleDateFormat dt = new SimpleDateFormat("dd.MM.YYYY.");
-       
-        txtIme.setText(r.getIme());
-        txtPrezime.setText(r.getPrezime());
         
         try {
             txtOib.setText((r.getOib()));
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
-        txtMobitel.setText((r.getMobitel()));
+        txtIme.setText(r.getIme());
+        txtPrezime.setText(r.getPrezime());
         txtSpol.setText(r.getSpol());
+        
         try {
             txtDatum.setText(dt.format(r.getDatumRodenja()));
         } catch (Exception e) {
             e.printStackTrace();
         }
+        
+        txtMobitel.setText((r.getMobitel()));
+   
         try {
             txtOsnovica.setText((r.getOsnovicaPoSatu()));
         } catch (Exception e) {
