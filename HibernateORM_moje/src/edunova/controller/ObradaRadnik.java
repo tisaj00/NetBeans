@@ -5,10 +5,22 @@
  */
 package edunova.controller;
 
+import edunova.model.Radnik;
+import edunova.pomocno.AplikacijaException;
+
 /**
  *
  * @author Josip
  */
-public class ObradaRadnik {
+public class ObradaRadnik<T extends Radnik> extends Obrada<T>{
+    
+    public ObradaRadnik(){
+            super();
+    };
+    
+    protected void kontrola() throws AplikacijaException{
+    
+    
+    }
     
 }

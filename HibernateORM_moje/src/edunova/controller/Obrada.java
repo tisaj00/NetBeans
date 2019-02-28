@@ -9,6 +9,12 @@ package edunova.controller;
  *
  * @author Josip
  */
-public class Obrada {
+public abstract class Obrada<T> {
+    
+    protected DAO<T> dao;
+    
+    public Obrada(){
+        dao = new DAO<>();
+    }
     
 }
