@@ -14,13 +14,13 @@ import javax.swing.*;
  */
 public class Baza{
     Connection conn=null;
-    public static Connection Baza(){
+    public static Connection getConnected(){
         
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn=DriverManager.getConnection("jdbc:mysql://localhost/login?serverTimezone=UTC&"
+            Connection conn=DriverManager.getConnection("jdbc:mysql://localhost/registracija?serverTimezone=UTC&"
             + "useUnicode=true&characterEncoding=utf-8","edunova","edunova");
-            JOptionPane.showMessageDialog(null, "Connected to database");
+            
             return conn;
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
