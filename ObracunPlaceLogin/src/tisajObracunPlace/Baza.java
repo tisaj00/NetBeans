@@ -18,7 +18,7 @@ public class Baza{
         
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn=DriverManager.getConnection("jdbc:mysql://localhost/registracija?serverTimezone=UTC&"
+            Connection conn=DriverManager.getConnection("jdbc:mysql://localhost/loginregistracija?serverTimezone=UTC&"
             + "useUnicode=true&characterEncoding=utf-8","edunova","edunova");
             
             return conn;

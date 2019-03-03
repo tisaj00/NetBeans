@@ -139,7 +139,7 @@ public class LoginForm extends javax.swing.JFrame {
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         conn=Baza.getConnected();
-        String sql="Select * from obracunplacelogin where username=? and password=?";
+        String sql="Select * from logreg where username=? and password=?";
         String hashed = BCrypt.hashpw(sql, BCrypt.gensalt());
         BCrypt.checkpw(sql, hashed);
         try {

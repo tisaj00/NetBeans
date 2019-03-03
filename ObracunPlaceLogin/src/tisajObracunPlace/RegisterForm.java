@@ -7,6 +7,7 @@ package tisajObracunPlace;
 
 import java.sql.PreparedStatement;
 import java.text.SimpleDateFormat;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -88,6 +89,11 @@ public class RegisterForm extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         jLabel9.setText("Kliknite za vraćanje na prijavu");
+        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel9MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -210,10 +216,10 @@ public class RegisterForm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Add a Username");
         }
         
-        else if(lozinka.equals("")){
+        else if(password.equals("")){
             JOptionPane.showMessageDialog(null, "Add a Password");
         }
-        else if(!lozinka.equals(Polozinka)){
+        else if(!password.equals(repassword)){
             JOptionPane.showMessageDialog(null, "Retype the password");
         }
         
@@ -221,12 +227,12 @@ public class RegisterForm extends javax.swing.JFrame {
         else{
             
         if(jtfDatum.getDate() != null){
-            SimpleDateFormat dateformat = new SimpleDateFormat("dd.MM.YYYY.");
+            SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
             date = dateformat.format(jtfDatum.getDate());
         }    
             
         PreparedStatement ps;
-        String query = "INSERT INTO `registracija`(`ime`, `prezime`, `username`, `password`, `repassword`, `datumrodenja`) VALUES (?,?,?,?,?,?)";
+        String query = "INSERT INTO `logreg`(`ime`, `prezime`, `username`, `password`, `repassword`, `datumrodenja`) VALUES (?,?,?,?,?,?)";
         try {
             ps = Baza.getConnected().prepareStatement(query);
             
@@ -258,6 +264,15 @@ public class RegisterForm extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
+        LoginForm lgn = new LoginForm();
+        lgn.setVisible(true);
+        lgn.pack();
+        lgn.setLocationRelativeTo(null);
+        lgn.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.dispose();
+    }//GEN-LAST:event_jLabel9MouseClicked
 
   
 
