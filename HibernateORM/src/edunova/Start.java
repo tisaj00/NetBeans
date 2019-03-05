@@ -4,6 +4,7 @@ package edunova;
 
 import edunova.controller.DAO;
 import edunova.controller.ObradaOsoba;
+import edunova.controller.ObradaPredavac;
 import edunova.controller.ObradaSmjer;
 import edunova.model.Grupa;
 import edunova.model.Predavac;
@@ -19,21 +20,23 @@ public class Start {
 
     public static void main(String[] args) {
         
-        ObradaSmjer os = new ObradaSmjer();
-       
-        Smjer novi = new Smjer();
-        novi.setNaziv("Java");
-        novi.setCijena(new BigDecimal(200));
+        ObradaPredavac op = new ObradaPredavac();
+        
+        
+        Predavac p = new Predavac();
+        
+        p.setIme("Pero");
+        p.setPrezime("Perić");
+        
+        p.setEmail("pero@sdjgbsdbg.ll");
+        p.setOib("01617271538");
         
         try {
-            os.spremi(novi);
+            op.spremi(p);
         } catch (EdunovaException ex) {
             System.out.println(ex.getMessage());
         }
         
-        for(Smjer s : os.getSmjerovi()){
-            System.out.println(s.getNaziv());
-        }
         
         
         

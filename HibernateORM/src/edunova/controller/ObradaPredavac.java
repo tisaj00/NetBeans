@@ -8,28 +8,30 @@ package edunova.controller;
 import edunova.model.Predavac;
 import edunova.pomocno.EdunovaException;
 import edunova.pomocno.HibernateUtil;
+import edunova.pomocno.ObradaSucelje;
 import java.util.Arrays;
 import java.util.List;
+import org.apache.commons.validator.routines.IBANValidator;
 
 
 /**
  *
  * @author Profesor
  */
-public class ObradaPredavac extends ObradaOsoba<Predavac>{
+public class ObradaPredavac extends ObradaOsoba<Predavac>  implements ObradaSucelje<Predavac>{
     
      public ObradaPredavac(){
          super();
      }
      
-     public List<Predavac> getPredavaci(){
+     public List<Predavac> getLista(){
          return HibernateUtil.getSession().createQuery("from Predavac").list();
      }
      
-     public Predavac save(Predavac p) throws EdunovaException{
+     public Predavac spremi(Predavac p) throws EdunovaException{
          
-         super.kontrola();
-         kontrola();
+         super.kontrola(p);
+         kontrola(p);
          
          return dao.save(p);
      }
@@ -46,7 +48,11 @@ public class ObradaPredavac extends ObradaOsoba<Predavac>{
          dao.delete(p);
      }
      
-     protected void kontrola() throws EdunovaException{
+     public void kontrola(Predavac p) throws EdunovaException{
+         
+         if(!IBANValidator.getInstance().isValid(p.getIban())){
+             throw new EdunovaException("IBAN nije ispravan");
+         }
         
      }
      

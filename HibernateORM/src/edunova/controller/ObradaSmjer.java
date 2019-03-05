@@ -5,9 +5,11 @@
  */
 package edunova.controller;
 
+import edunova.model.Polaznik;
 import edunova.model.Smjer;
 import edunova.pomocno.EdunovaException;
 import edunova.pomocno.HibernateUtil;
+import edunova.pomocno.ObradaSucelje;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -15,13 +17,13 @@ import java.util.List;
  *
  * @author Profesor
  */
-public class ObradaSmjer extends Obrada<Smjer>{
+public class ObradaSmjer extends Obrada<Smjer>  implements ObradaSucelje<Smjer>{
     
     public ObradaSmjer(){
         super();
     }
     
-    public List<Smjer> getSmjerovi(){
+    public List<Smjer> getLista(){
         //return dao.createQuery("from Smjer");
         return HibernateUtil.getSession().createQuery("from Smjer").list();
     }
@@ -43,7 +45,7 @@ public class ObradaSmjer extends Obrada<Smjer>{
         
     }
     
-    private void kontrola(Smjer s) throws EdunovaException{
+    public void kontrola(Smjer s) throws EdunovaException{
        if(s.getNaziv()==null){
             throw new EdunovaException("Naziv je null, obavezan unos");
         }

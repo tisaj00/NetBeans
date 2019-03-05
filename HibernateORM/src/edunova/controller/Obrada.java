@@ -5,8 +5,6 @@
  */
 package edunova.controller;
 
-import edunova.model.Predavac;
-
 /**
  *
  * @author Profesor
