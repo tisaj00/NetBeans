@@ -8,6 +8,7 @@ package edunova.controller;
 /**
  *
  * @author Josip
+ * @param <T>
  */
 public abstract class Obrada<T> {
     

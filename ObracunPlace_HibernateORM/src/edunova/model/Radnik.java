@@ -14,7 +14,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table
-public class Radnik extends Entitet implements Serializable{
+public abstract class Radnik extends Entitet implements Serializable{
     
     private String ime;
     private String prezime;

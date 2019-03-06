@@ -1,7 +1,5 @@
 package edunova;
 
-// domaća zadaća:
-
 import edunova.pomocno.HibernateUtil;
 
 //upogoniti Hibernate prateći https://examples.javacodegeeks.com/enterprise-java/hibernate/hibernate-maven-example/

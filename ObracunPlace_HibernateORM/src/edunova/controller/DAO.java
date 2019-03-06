@@ -10,7 +10,7 @@ import org.hibernate.Session;
 /**
  * @param <T> bilo koji entitet mapiran putem ORM-a
  */
-public class DAO<T extends Entitet> {
+public class DAO<T> {
 
     private final Session session;
 

@@ -6,11 +6,8 @@
 package edunova.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -29,10 +26,7 @@ public class Isplata extends Entitet implements Serializable{
     private Date datum;
     private String nazivIsplate;
 
-    
 
-   
-    
     public Radnik getRadnik() {
         return radnik;
     }
