@@ -14,7 +14,7 @@ import edunova.pomocno.Pomocno;
  * @author Josip
  * @param <T>
  */
-public abstract class ObradaRadnik<T extends Radnik> extends Obrada<T>{
+public class ObradaRadnik<T extends Radnik> extends Obrada<T>{
     
     public ObradaRadnik(){
         super();

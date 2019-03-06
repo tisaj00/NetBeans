@@ -6,12 +6,9 @@
 package edunova.controller;
 
 import edunova.model.Isplata;
-import edunova.model.Radnik;
 import edunova.pomocno.AplikacijaException;
 import edunova.pomocno.HibernateUtil;
 import edunova.pomocno.ObradaSucelje;
-import edunova.pomocno.Pomocno;
-import java.util.Arrays;
 import java.util.List;
 import org.apache.commons.validator.routines.IBANValidator;
 
@@ -26,22 +23,19 @@ public class ObradaIsplata extends Obrada<Isplata> implements ObradaSucelje<Ispl
      }
        
     public List<Isplata> getLista(){
-         return HibernateUtil.getSession().createQuery("from Radnik").list();
+         return HibernateUtil.getSession().createQuery("from Isplata").list();
     }
     
     public Isplata save(Isplata i) throws AplikacijaException{
          
          super.kontrola(i);
-         kontrola(i);
          
          return dao.save(i);
      }
     public void obrisi(Isplata i) throws AplikacijaException{
          
          if(i.getRadnik().size()>0){
-             throw new AplikacijaException(
-                     "Ne može se obrisati predavač jer predaje na grupama: " + Arrays.toString(i.getRadnik().toString())
-             );
+             throw new AplikacijaException("Isplata se ne može obrisati jer ima radnika");
          }
          
          dao.delete(i);

@@ -5,13 +5,10 @@
  */
 package edunova.controller;
 
-import edunova.model.Isplata;
 import edunova.model.Obracun;
-import edunova.model.Radnik;
 import edunova.pomocno.AplikacijaException;
 import edunova.pomocno.HibernateUtil;
 import edunova.pomocno.ObradaSucelje;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -38,10 +35,8 @@ public class ObradaObracun extends Obrada<Obracun> implements ObradaSucelje<Obra
     
      public void obrisi(Obracun ob) throws AplikacijaException{
          
-         if(!i.getRadnik().isEmpty()){
-             throw new AplikacijaException(
-                     "Ne može se obrisati predavač jer predaje na grupama: " + Arrays.toString(i.getRadnik().toString())
-             );
+         if(){
+             throw new AplikacijaException("");
          }
          
          dao.delete(ob);

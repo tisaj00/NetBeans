@@ -17,9 +17,8 @@ public class Obracun extends Entitet implements Serializable{
     
     @ManyToOne
     private Isplata isplata;
-    
-    
-    @ManyToOne
+
+    @ManyToOne   
     private VrstaPrimanja vrstaPrimanja;
     
     private int kolicinaSati;

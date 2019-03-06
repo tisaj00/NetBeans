@@ -5,6 +5,8 @@
  */
 package edunova.controller;
 
+import edunova.model.Isplata;
+
 /**
  *
  * @author Josip
@@ -17,5 +19,6 @@ public abstract class Obrada<T> {
     public Obrada(){
         dao = new DAO<>();
     }
+
     
 }
