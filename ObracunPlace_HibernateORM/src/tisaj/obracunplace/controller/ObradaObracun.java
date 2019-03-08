@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edunova.controller;
+package tisaj.obracunplace.controller;
 
-import edunova.model.Obracun;
-import edunova.pomocno.AplikacijaException;
-import edunova.pomocno.HibernateUtil;
-import edunova.pomocno.ObradaSucelje;
+import tisaj.obracunplace.model.Obracun;
+import tisaj.obracunplace.pomocno.ObracunPlaceException;
+import tisaj.obracunplace.pomocno.HibernateUtil;
+import tisaj.obracunplace.pomocno.ObradaSucelje;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -25,27 +26,28 @@ public class ObradaObracun extends Obrada<Obracun> implements ObradaSucelje<Obra
          return HibernateUtil.getSession().createQuery("from Obracun").list();
     }
     
-    public Obracun save(Obracun ob) throws AplikacijaException{
+    public Obracun save(Obracun ob) throws ObracunPlaceException{
          
-         super.kontrola(ob);
          kontrola(ob);
+     
          
          return dao.save(ob);
      }
     
-     public void obrisi(Obracun ob) throws AplikacijaException{
-         
-         if(){
-             throw new AplikacijaException("");
+     public void obrisi(Obracun ob) throws ObracunPlaceException{
+       /*  
+         if(ob.get().size()>0){
+             throw new ObracunPlaceException("Obračun se ne može obrisati jer ima radnika,isplatu i vrstu primanja");
          }
-         
+
+      */   
          dao.delete(ob);
      }
      
-     public void kontrola(Obracun ob) throws AplikacijaException{
+     public void kontrola(Obracun ob) throws ObracunPlaceException{
      
          if(ob.getKolicinaSati()<0){
-             throw new AplikacijaException("Količina sati mora bit pozitivan broj");
+             throw new ObracunPlaceException("Količina sati mora bit pozitivan broj");
          }
          
          

@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edunova.pomocno;
+package tisaj.obracunplace.pomocno;
 
 /**
  *
  * @author Josip
  */
-public class AplikacijaException extends Exception{
+public class ObracunPlaceException extends Exception{
     
     private int code;
 
@@ -21,7 +21,7 @@ public class AplikacijaException extends Exception{
         this.code = code;
     }
     
-    public AplikacijaException(String poruka){
+    public ObracunPlaceException(String poruka){
         super(poruka);
     }
     

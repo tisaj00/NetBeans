@@ -1,4 +1,4 @@
-package edunova.model;
+package tisaj.obracunplace.model;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

@@ -1,4 +1,4 @@
-package edunova.pomocno;
+package tisaj.obracunplace.pomocno;
 
 import org.hibernate.Session;
 import org.hibernate.cfg.Configuration;

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edunova.model;
+package tisaj.obracunplace.model;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
@@ -21,15 +21,10 @@ public class Obracun extends Entitet implements Serializable{
     @ManyToOne   
     private VrstaPrimanja vrstaPrimanja;
     
+    @ManyToOne   
+    private Radnik radnik;
+    
     private int kolicinaSati;
-
-    public int getKolicinaSati() {
-        return kolicinaSati;
-    }
-
-    public void setKolicinaSati(int kolicinaSati) {
-        this.kolicinaSati = kolicinaSati;
-    }
 
     public Isplata getIsplata() {
         return isplata;
@@ -46,9 +41,24 @@ public class Obracun extends Entitet implements Serializable{
     public void setVrstaPrimanja(VrstaPrimanja vrstaPrimanja) {
         this.vrstaPrimanja = vrstaPrimanja;
     }
-    
 
-    
+    public Radnik getRadnik() {
+        return radnik;
+    }
+
+    public void setRadnik(Radnik radnik) {
+        this.radnik = radnik;
+    }
+
+    public int getKolicinaSati() {
+        return kolicinaSati;
+    }
+
+    public void setKolicinaSati(int kolicinaSati) {
+        this.kolicinaSati = kolicinaSati;
+    }
+
+   
 
    
     

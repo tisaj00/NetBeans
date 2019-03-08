@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edunova.model;
+package tisaj.obracunplace.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -20,31 +20,16 @@ import javax.persistence.TemporalType;
 @Table
 public class Isplata extends Entitet implements Serializable{
     
-    @ManyToOne
-    private Radnik radnik;
-    
-    private String racunRadnika;
+
     
     @Temporal(TemporalType.DATE)
     private Date datum;
     private String nazivIsplate;
-
-
-    public Radnik getRadnik() {
-        return radnik;
-    }
-
-    public void setRadnik(Radnik radnik) {
-        this.radnik = radnik;
-    }
-
-    public String getRacunRadnika() {
-        return racunRadnika;
-    }
-
-    public void setRacunRadnika(String racunRadnika) {
-        this.racunRadnika = racunRadnika;
-    }
+    
+    private String vrstaIsplate;
+    
+    @OneToMany(mappedBy = "isplata")
+    private List<Obracun> obracuni = new ArrayList<>();
 
     public Date getDatum() {
         return datum;
@@ -61,7 +46,24 @@ public class Isplata extends Entitet implements Serializable{
     public void setNazivIsplate(String nazivIsplate) {
         this.nazivIsplate = nazivIsplate;
     }
+
+    public List<Obracun> getObracuni() {
+        return obracuni;
+    }
+
+    public void setObracuni(List<Obracun> obracuni) {
+        this.obracuni = obracuni;
+    }
+
+    public String getVrstaIsplate() {
+        return vrstaIsplate;
+    }
+
+    public void setVrstaIsplate(String vrstaIsplate) {
+        this.vrstaIsplate = vrstaIsplate;
+    }
+
     
-    
+
     
 }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edunova.pomocno;
+package tisaj.obracunplace.pomocno;
 
 import java.util.List;
 
@@ -14,9 +14,9 @@ import java.util.List;
 public interface ObradaSucelje<T> {
     
     public List<T> getLista();
-    public void kontrola(T t) throws AplikacijaException;
-    public T save(T t) throws AplikacijaException;
-    public void obrisi(T t) throws AplikacijaException;
+    public void kontrola(T t) throws ObracunPlaceException;
+    public T save(T t) throws ObracunPlaceException;
+    public void obrisi(T t) throws ObracunPlaceException;
     
             
     

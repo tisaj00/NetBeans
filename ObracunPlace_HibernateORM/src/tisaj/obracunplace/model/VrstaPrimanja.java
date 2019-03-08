@@ -3,36 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edunova.model;
+package tisaj.obracunplace.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table
 public class VrstaPrimanja extends Entitet implements Serializable {
     
-    private String vrijednost;
+    private String nazivVrstePrimanja;
     private BigDecimal koeficijent;
-    
-    
 
-   
-
-    public String getVrijednost() {
-        return vrijednost;
+    public String getNazivVrstePrimanja() {
+        return nazivVrstePrimanja;
     }
 
-    public void setVrijednost(String vrijednost) {
-        this.vrijednost = vrijednost;
+    public void setNazivVrstePrimanja(String nazivVrstePrimanja) {
+        this.nazivVrstePrimanja = nazivVrstePrimanja;
     }
-
+    
     public BigDecimal getKoeficijent() {
         return koeficijent;
     }

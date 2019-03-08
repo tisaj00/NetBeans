@@ -1,6 +1,8 @@
-package edunova;
+package tisaj.obracunplace;
 
-import edunova.pomocno.HibernateUtil;
+
+import tisaj.obracunplace.pomocno.HibernateUtil;
+
 
 //upogoniti Hibernate prateći https://examples.javacodegeeks.com/enterprise-java/hibernate/hibernate-maven-example/
 public class Start {

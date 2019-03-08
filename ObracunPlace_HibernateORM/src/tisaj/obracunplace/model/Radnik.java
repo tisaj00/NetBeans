@@ -3,11 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edunova.model;
+package tisaj.obracunplace.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,6 +30,29 @@ public abstract class Radnik extends Entitet implements Serializable{
     private String mobitel;
     private String osnovicaPoSatu;
     private String opcinaPrebivaliste;
+    
+    private String iban;
+    
+    
+    
+    @OneToMany (mappedBy = "radnik")
+    private List<Obracun> obracuni = new ArrayList<>();
+
+    public String getIban() {
+        return iban;
+    }
+
+    public void setIban(String iban) {
+        this.iban = iban;
+    }
+
+    public List<Obracun> getObracuni() {
+        return obracuni;
+    }
+
+    public void setObracuni(List<Obracun> obracuni) {
+        this.obracuni = obracuni;
+    }
 
     public String getIme() {
         return ime;

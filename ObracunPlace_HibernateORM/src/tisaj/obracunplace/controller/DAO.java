@@ -1,8 +1,8 @@
 
-package edunova.controller;
+package tisaj.obracunplace.controller;
 
-import edunova.model.Entitet;
-import edunova.pomocno.HibernateUtil;
+import tisaj.obracunplace.model.Entitet;
+import tisaj.obracunplace.pomocno.HibernateUtil;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
