@@ -31,6 +31,11 @@ public class Polaznik extends Osoba implements Serializable{
     public void setGrupe(List<Grupa> grupe) {
         this.grupe = grupe;
     }
+
+    @Override
+    public String toString() {
+        return getIme() + " " + getPrezime();
+    }
             
     
     

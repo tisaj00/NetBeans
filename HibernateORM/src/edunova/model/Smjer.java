@@ -18,6 +18,7 @@ public class Smjer extends Entitet implements Serializable {
     private BigDecimal cijena;
     private BigDecimal upisnina;
     private int trajanje;
+    private boolean verificiran;
     
     @OneToMany(mappedBy = "smjer")
     private List<Grupa> grupe=new ArrayList<>();
@@ -28,6 +29,14 @@ public class Smjer extends Entitet implements Serializable {
 
     public void setGrupe(List<Grupa> grupe) {
         this.grupe = grupe;
+    }
+
+    public boolean isVerificiran() {
+        return verificiran;
+    }
+
+    public void setVerificiran(boolean verificiran) {
+        this.verificiran = verificiran;
     }
 
 

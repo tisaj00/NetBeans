@@ -11,6 +11,7 @@ import edunova.pomocno.EdunovaException;
 import edunova.pomocno.HibernateUtil;
 import edunova.pomocno.ObradaSucelje;
 import java.util.List;
+import org.hibernate.Query;
 
 /**
  *
@@ -26,12 +27,35 @@ public class ObradaPolaznik extends ObradaOsoba<Polaznik> implements ObradaSucel
          return HibernateUtil.getSession().createQuery("from Polaznik").list();
      }
      
+     public List<Polaznik> getLista(String uvjet,boolean isSelected){
+         
+         Query query = HibernateUtil.getSession().createQuery("from Polaznik a "
+                 + " where concat(a.ime,' ',a.prezime) like :uvjet")
+                 .setString("uvjet", "%" + uvjet + "%");
+         if(isSelected){
+             query.setMaxResults(50);
+         }
+         
+         return query.list();
+     }
+     
      public Polaznik spremi(Polaznik p) throws EdunovaException{
          
          super.kontrola(p);
          kontrola(p);
          
          return dao.save(p);
+     }
+     
+     public List<Polaznik> spremi( List<Polaznik>  polaznici) throws EdunovaException{
+         
+         for (Polaznik p : polaznici) {
+              super.kontrola(p);
+            kontrola(p);
+         }
+        
+         
+         return dao.save(polaznici);
      }
      
      public void obrisi(Polaznik p) throws EdunovaException{
@@ -42,6 +66,12 @@ public class ObradaPolaznik extends ObradaOsoba<Polaznik> implements ObradaSucel
          dao.delete(p);
      }
      
+     /**
+      * Kontrola broja ugovora.
+      * Ostale kontrole polaznika su u ObradaOsoba
+      * @param p
+      * @throws EdunovaException 
+      */
       public void kontrola(Polaznik p) throws EdunovaException{
          
         

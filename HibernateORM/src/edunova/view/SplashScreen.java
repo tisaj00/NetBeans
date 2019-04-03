@@ -6,6 +6,8 @@
 package edunova.view;
 
 import edunova.controller.ObradaSmjer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -18,18 +20,44 @@ public class SplashScreen extends javax.swing.JFrame {
      */
     public SplashScreen() {
         initComponents();
-        
-        Thread nit = new Thread();
-        
-        nit.start();
 
-        if (new ObradaSmjer().getLista().size() > 0) {
-            //idi dalje
-            new Login().setVisible(true);
-            dispose();
-        } else {
-            //javi da nešto ne valja
+        ProvjeriSpajanjeNaBazu p = new ProvjeriSpajanjeNaBazu();
+        p.start();
+
+    }
+
+    private class ProvjeriSpajanjeNaBazu extends Thread {
+
+        @Override
+        public void run() {
+
+//            lblPoruka.setText("Inicijaliziram....");
+//            for (int i = 1; i < 50; i++) {
+//                jProgressBar1.setValue(i);
+//                try {
+//                    Thread.sleep(1);
+//                } catch (InterruptedException ex) {
+//                }
+//            }
+
+            //lblPoruka.setText("Spajam se na bazu...");
+            if (new ObradaSmjer().getLista().size() > 0) {
+//                lblPoruka.setText("Uspješno, startam program..");
+//                for (int i = 50; i <= 100; i++) {
+//                    jProgressBar1.setValue(i);
+//                    try {
+//                        Thread.sleep(1);
+//                    } catch (InterruptedException ex) {
+//                    }
+//                }
+                //idi dalje
+                new Login().setVisible(true);
+                dispose();
+            } else {
+                //javi da nešto ne valja
+            }
         }
+
     }
 
     /**
@@ -42,6 +70,8 @@ public class SplashScreen extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        lblPoruka = new javax.swing.JLabel();
+        jProgressBar1 = new javax.swing.JProgressBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setType(java.awt.Window.Type.POPUP);
@@ -53,11 +83,30 @@ public class SplashScreen extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(187, 187, 187)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblPoruka, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 668, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 29, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblPoruka)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
         );
 
         pack();
@@ -67,5 +116,7 @@ public class SplashScreen extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JLabel lblPoruka;
     // End of variables declaration//GEN-END:variables
 }

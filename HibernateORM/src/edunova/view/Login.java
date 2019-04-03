@@ -5,6 +5,10 @@
  */
 package edunova.view;
 
+import edunova.controller.ObradaOperater;
+import edunova.model.Operater;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Profesor
@@ -27,24 +31,87 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        txtemail = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        txtLozinka = new javax.swing.JPasswordField();
+        btnLogiraj = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setText("email");
+
+        txtemail.setText("tjakopec@gmail.com");
+
+        jLabel2.setText("lozinka");
+
+        txtLozinka.setText("t");
+
+        btnLogiraj.setText("Logiraj se");
+        btnLogiraj.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogirajActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1)
+                            .addComponent(txtemail)
+                            .addComponent(txtLozinka, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(125, 125, 125)
+                        .addComponent(btnLogiraj)))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(txtemail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(txtLozinka, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(btnLogiraj)
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnLogirajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogirajActionPerformed
+       
+        ObradaOperater oo = new ObradaOperater();
+        Operater o = oo.autoriziraj(txtemail.getText(), String.valueOf(txtLozinka.getPassword()));
+        if(o!=null){
+           new Izbornik(o).setVisible(true);
+           dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Neispravan email ili kombinacija email i lozinka");
+        }
+        
+    }//GEN-LAST:event_btnLogirajActionPerformed
 
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLogiraj;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPasswordField txtLozinka;
+    private javax.swing.JTextField txtemail;
     // End of variables declaration//GEN-END:variables
 }
