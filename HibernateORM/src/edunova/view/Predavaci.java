@@ -5,12 +5,9 @@
  */
 package edunova.view;
 
-import edunova.controller.ObradaPolaznik;
-import edunova.model.Polaznik;
-import edunova.model.Smjer;
+import edunova.controller.ObradaPredavac;
+import edunova.model.Predavac;
 import edunova.pomocno.EdunovaException;
-import java.awt.event.KeyEvent;
-import java.math.BigDecimal;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
@@ -18,16 +15,16 @@ import javax.swing.JOptionPane;
  *
  * @author Profesor
  */
-public class Polaznici extends javax.swing.JFrame {
+public class Predavaci extends javax.swing.JFrame {
 
-    private ObradaPolaznik obradaEntitet;
+    private ObradaPredavac obradaEntitet;
 
     /**
      * Creates new form Polaznici
      */
-    public Polaznici() {
+    public Predavaci() {
         initComponents();
-        obradaEntitet = new ObradaPolaznik();
+        obradaEntitet = new ObradaPredavac();
         // ucitajEntitete();
     }
 
@@ -54,7 +51,7 @@ public class Polaznici extends javax.swing.JFrame {
         btnBrisanje = new javax.swing.JButton();
         txtIme = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        txtBrojUgovora = new javax.swing.JTextField();
+        txtIBAN = new javax.swing.JTextField();
         txtUvjet = new javax.swing.JTextField();
         chbLimitator = new javax.swing.JCheckBox();
 
@@ -102,9 +99,9 @@ public class Polaznici extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setText("Broj ugovora");
+        jLabel5.setText("IBAN");
 
-        txtBrojUgovora.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtIBAN.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         txtUvjet.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -145,7 +142,7 @@ public class Polaznici extends javax.swing.JFrame {
                         .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(txtOIB, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(txtPrezime, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtBrojUgovora, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtIBAN, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel5)))
         );
         layout.setVerticalGroup(
@@ -179,7 +176,7 @@ public class Polaznici extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtBrojUgovora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtIBAN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnPromjena)
@@ -198,7 +195,7 @@ public class Polaznici extends javax.swing.JFrame {
             return;
         }
 
-        Polaznik entitet = lstEntiteti.getSelectedValue();
+        Predavac entitet = lstEntiteti.getSelectedValue();
         if (entitet == null) {
             return;
         }
@@ -209,7 +206,7 @@ public class Polaznici extends javax.swing.JFrame {
         txtIme.setText(entitet.getIme());
         txtPrezime.setText(entitet.getPrezime());
         txtEmail.setText(entitet.getEmail());
-        txtBrojUgovora.setText(entitet.getBrojUgovora());
+        txtIBAN.setText(entitet.getIban());
 
 
     }//GEN-LAST:event_lstEntitetiValueChanged
@@ -219,20 +216,20 @@ public class Polaznici extends javax.swing.JFrame {
         txtIme.setText("");
         txtPrezime.setText("");
         txtEmail.setText("");
-        txtBrojUgovora.setText("");
+        txtIBAN.setText("");
     }
 
-    private void preuzmiVrijednosti(Polaznik entitet) {
+    private void preuzmiVrijednosti(Predavac entitet) {
         entitet.setIme(txtIme.getText());
         entitet.setPrezime(txtPrezime.getText());
         entitet.setOib(txtOIB.getText());
         entitet.setEmail(txtEmail.getText());
-        entitet.setBrojUgovora(txtBrojUgovora.getText());
+        entitet.setIban(txtIBAN.getText());
 
     }
 
     private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed
-        Polaznik entitet = new Polaznik();
+        Predavac entitet = new Predavac();
 
         preuzmiVrijednosti(entitet);
 
@@ -251,14 +248,14 @@ public class Polaznici extends javax.swing.JFrame {
 
     private void ucitajEntitete() {
         if (chbLimitator.isSelected()) {
-            DefaultListModel<Polaznik> m = new DefaultListModel<>();
-            for (Polaznik s : obradaEntitet.getLista(txtUvjet.getText().trim(), chbLimitator.isSelected())) {
+            DefaultListModel<Predavac> m = new DefaultListModel<>();
+            for (Predavac s : obradaEntitet.getLista(txtUvjet.getText().trim(), chbLimitator.isSelected())) {
                 m.addElement(s);
             }
             lstEntiteti.setModel(m);
         } else {
-            DefaultListModel<Polaznik> m = new DefaultListModel<>();
-            Polaznik p = new Polaznik();
+            DefaultListModel<Predavac> m = new DefaultListModel<>();
+            Predavac p = new Predavac();
             p.setIme("Molim");
             p.setPrezime("pričekati");
             m.addElement(p);
@@ -273,8 +270,8 @@ public class Polaznici extends javax.swing.JFrame {
 
         @Override
         public void run() {
-            DefaultListModel<Polaznik> m = new DefaultListModel<>();
-            for (Polaznik s : obradaEntitet.getLista(txtUvjet.getText().trim(), chbLimitator.isSelected())) {
+            DefaultListModel<Predavac> m = new DefaultListModel<>();
+            for (Predavac s : obradaEntitet.getLista(txtUvjet.getText().trim(), chbLimitator.isSelected())) {
                 m.addElement(s);
             }
             lstEntiteti.setModel(m);
@@ -283,7 +280,7 @@ public class Polaznici extends javax.swing.JFrame {
     }
 
     private void btnPromjenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPromjenaActionPerformed
-        Polaznik entitet = lstEntiteti.getSelectedValue();
+        Predavac entitet = lstEntiteti.getSelectedValue();
 
         if (entitet == null) {
             JOptionPane.showConfirmDialog(null, "Prvo odaberite polaznika");
@@ -305,7 +302,7 @@ public class Polaznici extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPromjenaActionPerformed
 
     private void btnBrisanjeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrisanjeActionPerformed
-        Polaznik entitet = lstEntiteti.getSelectedValue();
+        Predavac entitet = lstEntiteti.getSelectedValue();
 
         if (entitet == null) {
             JOptionPane.showConfirmDialog(null, "Prvo odaberite smjer");
@@ -339,9 +336,9 @@ public class Polaznici extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JList<Polaznik> lstEntiteti;
-    private javax.swing.JTextField txtBrojUgovora;
+    private javax.swing.JList<Predavac> lstEntiteti;
     private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtIBAN;
     private javax.swing.JTextField txtIme;
     private javax.swing.JTextField txtOIB;
     private javax.swing.JTextField txtPrezime;

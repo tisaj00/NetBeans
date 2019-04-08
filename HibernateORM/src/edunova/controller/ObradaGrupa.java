@@ -30,6 +30,15 @@ public class ObradaGrupa extends Obrada<Grupa> implements ObradaSucelje<Grupa>{
         if(t.getNaziv().trim().isEmpty()){
             throw new EdunovaException("Naziv obavezno");
         }
+        
+        if(t.getSmjer().getSifra()==0){
+            throw new EdunovaException("Obavezan odabir smjera");
+        }
+        
+        if(t.getPredavac().getSifra()==0){
+            throw new EdunovaException("Obavezan odabir predavača");
+        }
+        
     }
 
     @Override

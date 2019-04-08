@@ -35,6 +35,11 @@ public class Predavac extends Osoba implements Serializable{
     public void setIban(String iban) {
         this.iban = iban;
     }
+
+    @Override
+    public String toString() {
+           return getIme() + " " + getPrezime();
+    }
   
   
     

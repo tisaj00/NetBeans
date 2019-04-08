@@ -1,10 +1,13 @@
 package edunova;
 
 // domaća zadaća:
+import com.github.javafaker.Faker;
+import edunova.controller.ObradaGrupa;
 import edunova.controller.ObradaOperater;
-import edunova.controller.ObradaPolaznik;
+import edunova.controller.ObradaPredavac;
+import edunova.model.Grupa;
 import edunova.model.Operater;
-import edunova.model.Polaznik;
+import edunova.model.Predavac;
 import edunova.pomocno.BCrypt;
 import edunova.pomocno.EdunovaException;
 import edunova.view.SplashScreen;
@@ -18,17 +21,19 @@ public class Start {
 
     public static void main(String[] args) {
 
-//        ObradaPolaznik op = new ObradaPolaznik();
+//        ObradaPredavac op = new ObradaPredavac();
 //           long start = System.currentTimeMillis();
-//        Polaznik p;
-//        List<Polaznik> lista = new ArrayList<>();
-//        for (int i = 0; i < 120000; i++) {
+//        Predavac p;
+//        List<Predavac> lista = new ArrayList<>();
+//        Faker f = new Faker();
+//        for (int i = 0; i < 100; i++) {
 //
-//            p = new Polaznik();
-//            p.setIme("Polaznik b" +i);
-//            p.setPrezime("Prezime b" +i);
-//            p.setEmail("edunova@edunova.hr");
+//            p = new Predavac();
+//            p.setIme(f.name().firstName());
+//            p.setPrezime(f.name().lastName());
+//            p.setEmail(f.name().username() + "@edunova.hr");
 //            p.setOib("98544075463");
+//            p.setIban("HR1624840083284924558");
 //               
 //            lista.add(p);
 //           
@@ -43,6 +48,16 @@ public class Start {
 //        long kraj = System.currentTimeMillis();
 //        
 //        System.out.println(kraj-start);
+
+//        ObradaGrupa o = new ObradaGrupa();
+//        Grupa g = new Grupa();
+//        g.setNaziv("Grupa");
+//        try {
+//            o.spremi(g);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+        
 
          new SplashScreen().setVisible(true);
 //      Operater o = new Operater();

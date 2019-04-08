@@ -12,6 +12,7 @@ import edunova.pomocno.ObradaSucelje;
 import java.util.Arrays;
 import java.util.List;
 import org.apache.commons.validator.routines.IBANValidator;
+import org.hibernate.Query;
 
 
 /**
@@ -26,6 +27,18 @@ public class ObradaPredavac extends ObradaOsoba<Predavac>  implements ObradaSuce
      
      public List<Predavac> getLista(){
          return HibernateUtil.getSession().createQuery("from Predavac").list();
+     }
+     
+      public List<Predavac> getLista(String uvjet,boolean isSelected){
+         
+          Query query = HibernateUtil.getSession().createQuery("from Predavac a "
+                 + " where concat(a.ime,' ',a.prezime) like :uvjet")
+                 .setString("uvjet", "%" + uvjet + "%");
+         if(isSelected){
+             query.setMaxResults(50);
+         }
+         
+         return query.list();
      }
      
      public Predavac spremi(Predavac p) throws EdunovaException{
@@ -57,5 +70,14 @@ public class ObradaPredavac extends ObradaOsoba<Predavac>  implements ObradaSuce
      }
      
     
-    
+     public List<Predavac> spremi( List<Predavac>  predavaci) throws EdunovaException{
+         
+         for (Predavac p : predavaci) {
+              super.kontrola(p);
+            kontrola(p);
+         }
+        
+         
+         return dao.save(predavaci);
+     }
 }

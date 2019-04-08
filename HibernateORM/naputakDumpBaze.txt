@@ -1,0 +1,5 @@
+
+mysqldump -uedunova -pedunova edunova_hib > F:\J19NetBeans\HibernateORM\edunova_hib.sql
+
+
+

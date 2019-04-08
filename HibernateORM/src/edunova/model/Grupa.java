@@ -71,6 +71,11 @@ public class Grupa extends Entitet implements Serializable {
     public void setPolaznici(List<Polaznik> polaznici) {
         this.polaznici = polaznici;
     }
+
+    @Override
+    public String toString() {
+        return naziv;
+    }
     
     
     
