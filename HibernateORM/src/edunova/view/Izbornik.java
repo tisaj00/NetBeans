@@ -5,7 +5,18 @@
  */
 package edunova.view;
 
+
+import edunova.controller.ObradaGrupa;
 import edunova.model.Operater;
+import edunova.pomocno.HibernateUtil;
+import java.util.List;
+import org.hibernate.SQLQuery;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.ChartUtilities;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PiePlot3D;
+import org.jfree.data.general.DefaultPieDataset;
 
 /**
  *
@@ -21,6 +32,36 @@ public class Izbornik extends javax.swing.JFrame {
         initComponents();
         this.operater=operater;
         setTitle(operater.getPrezime() + " " + operater.getIme());
+        
+        DefaultPieDataset dataset = new DefaultPieDataset( );  
+        //https://stackoverflow.com/questions/1770010/how-do-i-measure-time-elapsed-in-java
+        SQLQuery sql = 
+        HibernateUtil.getSession().createSQLQuery("select a.naziv, count(b.polaznik_id) as ukupno  from grupa a inner join grupa_polaznik b on a.sifra=b.grupa_id group by a.naziv order by 2 desc, 1 asc");
+        
+        List<Object[]> rows = sql.list();
+        for(Object[] row : rows){
+            dataset.setValue( row[0].toString() , new Double( row[1].toString() ) );
+        }
+        /*
+        new ObradaGrupa().getLista().forEach((g)->{
+            dataset.setValue( g.getNaziv() , new Double( g.getPolaznici().size() ) );    //overkill  
+        });
+        */
+        JFreeChart chart =  ChartFactory.createPieChart3D( 
+         "Omjer polaznika po grupama" ,  // chart title                   
+         dataset ,         // data 
+         true ,            // include legend                   
+         true, 
+         false);
+        final PiePlot3D plot = ( PiePlot3D ) chart.getPlot();             
+      plot.setStartAngle( 270 );             
+      plot.setForegroundAlpha( 0.60f );             
+      plot.setInteriorGap( 0.02 );             
+      
+        ChartPanel p = new ChartPanel(chart);
+        p.setSize(jPanel1.getSize());
+        jPanel1.add(p);
+        
     }
 
     /**
@@ -32,6 +73,7 @@ public class Izbornik extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -40,6 +82,17 @@ public class Izbornik extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 354, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 216, Short.MAX_VALUE)
+        );
 
         jMenu1.setText("Edunova");
 
@@ -83,11 +136,17 @@ public class Izbornik extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 374, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 238, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -119,5 +178,6 @@ public class Izbornik extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

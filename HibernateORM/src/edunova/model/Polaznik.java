@@ -12,9 +12,6 @@ import javax.persistence.Table;
 public class Polaznik extends Osoba implements Serializable{
     
     private String brojUgovora;
-    
-    @ManyToMany(mappedBy = "polaznici")
-    private List<Grupa> grupe=new ArrayList<>();
 
     public String getBrojUgovora() {
         return brojUgovora;
@@ -24,13 +21,6 @@ public class Polaznik extends Osoba implements Serializable{
         this.brojUgovora = brojUgovora;
     }
 
-    public List<Grupa> getGrupe() {
-        return grupe;
-    }
-
-    public void setGrupe(List<Grupa> grupe) {
-        this.grupe = grupe;
-    }
 
     @Override
     public String toString() {

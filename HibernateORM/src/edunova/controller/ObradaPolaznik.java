@@ -59,9 +59,9 @@ public class ObradaPolaznik extends ObradaOsoba<Polaznik> implements ObradaSucel
      }
      
      public void obrisi(Polaznik p) throws EdunovaException{
-         if(p.getGrupe().size()>0){
-             throw new EdunovaException("Ne možete obrisati polaznika je je upisan na jednu ili više grupa");
-         }
+//         if(p.getGrupe().size()>0){
+//             throw new EdunovaException("Ne možete obrisati polaznika je je upisan na jednu ili više grupa");
+//         }
          
          dao.delete(p);
      }

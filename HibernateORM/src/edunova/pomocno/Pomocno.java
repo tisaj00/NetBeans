@@ -5,6 +5,10 @@
  */
 package edunova.pomocno;
 
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 /**
  *
  * @author Profesor
@@ -36,6 +40,10 @@ public class Pomocno {
             kontrolni = 0;
 	}
         return kontrolni == Integer.parseInt(oib.substring(10));
+    }
+    
+    public static String getPutanjaAplikacije(){
+       return Paths.get("").toAbsolutePath().toString() + File.separator;
     }
     
 }

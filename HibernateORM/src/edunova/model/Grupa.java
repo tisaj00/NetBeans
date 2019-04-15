@@ -5,7 +5,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -27,7 +30,12 @@ public class Grupa extends Entitet implements Serializable {
     @ManyToOne
     private Predavac predavac;
     
-    @ManyToMany
+    @ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(
+        name = "grupa_polaznik", 
+        joinColumns = { @JoinColumn(name = "grupa_id") }, 
+        inverseJoinColumns = { @JoinColumn(name = "polaznik_id") }
+    )
     private List<Polaznik> polaznici = new ArrayList<>();
 
    

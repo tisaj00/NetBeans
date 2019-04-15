@@ -69,6 +69,7 @@ public class Predavaci extends javax.swing.JFrame {
 
         txtEmail.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
+        lstEntiteti.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         lstEntiteti.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 lstEntitetiValueChanged(evt);

@@ -68,6 +68,7 @@ public class Smjerovi extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Smjerovi");
 
+        lstSmjerovi.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         lstSmjerovi.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 lstSmjeroviValueChanged(evt);

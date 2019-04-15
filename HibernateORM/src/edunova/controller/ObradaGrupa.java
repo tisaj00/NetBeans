@@ -44,6 +44,9 @@ public class ObradaGrupa extends Obrada<Grupa> implements ObradaSucelje<Grupa>{
     @Override
     public Grupa spremi(Grupa t) throws EdunovaException {
         kontrola(t);
+        
+        
+        
         return dao.save(t);
     }
 
